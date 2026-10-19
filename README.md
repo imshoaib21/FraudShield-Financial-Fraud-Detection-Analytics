@@ -287,7 +287,7 @@ DIVIDE(
 | GitHub Repository | https://github.com/imshoaib21/FraudShield-Financial-Fraud-Detection-Analytics|
 | Live Deployment | https://fraudshield-financial-fraud-detecti.vercel.app/ |
 | Demo Video | Add link when available |
-| Project Report | Add the report PDF to this repository and link it here |
+| Project Report | [View Project Report](Financial%20Fraud%20Detection%20Report.pdf) |
 | Power BI Dashboard (`.pbix`) |[Download PBIX File](Fraud%20Detection.pbix) | 
 ---
 
