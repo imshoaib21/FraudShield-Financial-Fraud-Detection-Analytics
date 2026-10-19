@@ -288,8 +288,7 @@ DIVIDE(
 | Live Deployment | https://fraudshield-financial-fraud-detecti.vercel.app/ |
 | Demo Video | Add link when available |
 | Project Report | Add the report PDF to this repository and link it here |
-| Power BI Dashboard (`.pbix`) | Add a `.pbix` file if you intend to share the editable dashboard |
-
+| Power BI Dashboard (`.pbix`) |[Download PBIX File](Fraud%20Detection.pbix) | 
 ---
 
 ## 👨‍💻 Author
