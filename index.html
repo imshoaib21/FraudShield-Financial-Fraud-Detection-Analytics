@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Financial Fraud Detection — four-page Power BI dashboard project by MD SHOAIB AKHTAR." />
+  <title>Financial Fraud Detection | MD SHOAIB AKHTAR</title>
+  <style>
+    :root{color-scheme:dark;--bg:#091124;--panel:#121e35;--border:#273653;--text:#edf4ff;--muted:#a8b8cf;--accent:#3d9eff}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text)}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:17px clamp(16px,3vw,48px);border-bottom:1px solid var(--border);background:#0d192d;flex-wrap:wrap}
+    .brand{font-size:clamp(18px,2vw,24px);font-weight:800;letter-spacing:-.4px}.brand span{color:#69b8ff}
+    .actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;background:#167ce4;color:white;border:1px solid #318ce9;border-radius:8px;font:600 13px/1.2 inherit;padding:10px 13px;cursor:pointer;white-space:nowrap;transition:background .15s}
+    .btn:hover,.btn:focus-visible{background:#338ff0}.btn.secondary{background:#192b47;border-color:#385170}.btn.secondary:hover{background:#254160}
+    .intro{text-align:center;padding:23px 18px 12px}.intro h1{font-size:clamp(21px,3vw,33px);margin:0 0 7px}.intro p{color:var(--muted);margin:0;font-size:14px}
+    .tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:18px 14px 20px}.tab{border:1px solid #364766;background:#15233d;color:#d8e6ff;padding:10px 14px;border-radius:9px;cursor:pointer;font-weight:600;font-size:13px}.tab[aria-selected="true"]{background:#157ce3;border-color:#49a4ff;color:white}.tab:focus-visible{outline:3px solid #a2d5ff;outline-offset:3px}
+    main{width:min(100%,1900px);padding:0 clamp(10px,2vw,38px);margin:auto}
+    .viewer{background:#172238;border:1px solid #304363;border-radius:12px;padding:clamp(5px,1vw,13px);box-shadow:0 16px 45px #0005;overflow:hidden}
+    .viewer img{display:block;width:100%;height:auto;background:white;border-radius:5px}
+    .viewer-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:18px 2px 4px}
+    .page-label{font-size:14px;color:#b6c7df}.footer{margin-top:35px;border-top:1px solid var(--border);text-align:center;padding:24px 12px 34px;color:#aabbd3;font-size:14px}.footer strong{color:white}
+    @media(max-width:680px){.topbar{align-items:flex-start}.actions{width:100%}.intro{padding-top:18px}.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:17px}.tab{font-size:12px;padding:10px 7px}.viewer-bottom{justify-content:center}.page-label{width:100%;text-align:center}.footer{margin-top:23px}}
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">Fraud<span>Shield</span> <span style="color:#dce7fb;font-weight:500;font-size:.7em">| Analytics Dashboard</span></div>
+  <div class="actions">
+    <a class="btn" href="Financial-Fraud-Detection-Report.pdf" download="Financial-Fraud-Detection-Report.pdf" aria-label="Download project report as PDF">↓ Download Report</a>
+    <a class="btn secondary" href="Fraud-Detection-Dashboard.pdf" target="_blank" rel="noopener">View Dashboard PDF ↗</a>
+  </div>
+</header>
+<section class="intro">
+  <h1>Financial Fraud Detection Dashboard</h1>
+  <p>Four-page Power BI dashboard showcase · Transaction Monitoring · Fraud Risk Analysis</p>
+</section>
+<nav class="tabs" aria-label="Dashboard pages">
+  <button class="tab" data-page="0" aria-selected="true">01 · Transaction Overview</button>
+  <button class="tab" data-page="1" aria-selected="false">02 · Customer Behaviour</button>
+  <button class="tab" data-page="2" aria-selected="false">03 · Device Intelligence</button>
+  <button class="tab" data-page="3" aria-selected="false">04 · Banking Anomalies</button>
+</nav>
+<main>
+  <section class="viewer" aria-label="Full-page dashboard preview">
+    <img id="dashboard" src="assets/dashboard-1.webp" alt="Fraud Monitoring and Transaction Overview dashboard" width="3100" height="1777" fetchpriority="high" />
+  </section>
+  <div class="viewer-bottom">
+    <button class="btn secondary" id="prev" type="button">← Previous</button>
+    <span id="pageLabel" class="page-label" aria-live="polite">Page 1 of 4 — Fraud Monitoring &amp; Transaction Overview</span>
+    <button class="btn secondary" id="next" type="button">Next →</button>
+  </div>
+</main>
+<footer class="footer">This project was made by <strong>MD SHOAIB AKHTAR</strong></footer>
+<script>
+  const pages = [
+    {title:'Fraud Monitoring & Transaction Overview',alt:'Fraud monitoring transaction overview Power BI dashboard'},
+    {title:'Customer Behaviour & Fraud Risk Analysis',alt:'Customer behaviour and fraud risk Power BI dashboard'},
+    {title:'Advanced Fraud Risk and Device Intelligence',alt:'Device intelligence and advanced fraud risk Power BI dashboard'},
+    {title:'Banking Fraud & Account Anomaly Analysis',alt:'Banking fraud and account anomaly Power BI dashboard'}
+  ];
+  let current=0;
+  const img=document.getElementById('dashboard');
+  const tabs=[...document.querySelectorAll('.tab')];
+  const label=document.getElementById('pageLabel');
+  function showPage(page){
+    current=(page+pages.length)%pages.length;
+    img.src=`assets/dashboard-${current+1}.webp`;
+    img.alt=pages[current].alt;
+    label.textContent=`Page ${current+1} of ${pages.length} — ${pages[current].title}`;
+    tabs.forEach((tab,i)=>tab.setAttribute('aria-selected',String(i===current)));
+  }
+  tabs.forEach(tab=>tab.addEventListener('click',()=>showPage(Number(tab.dataset.page))));
+  document.getElementById('prev').addEventListener('click',()=>showPage(current-1));
+  document.getElementById('next').addEventListener('click',()=>showPage(current+1));
+  document.addEventListener('keydown',e=>{
+    if(['INPUT','TEXTAREA','SELECT','BUTTON'].includes(document.activeElement?.tagName))return;
+    if(e.key==='ArrowRight')showPage(current+1);
+    if(e.key==='ArrowLeft')showPage(current-1);
+  });
+</script>
+</body>
+</html>
